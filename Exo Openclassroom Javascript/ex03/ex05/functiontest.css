@@ -1,0 +1,9 @@
+
+.roux {
+    border: 3px solid black;
+}
+
+
+.blanc {
+    filter: grayscale(80%);
+}

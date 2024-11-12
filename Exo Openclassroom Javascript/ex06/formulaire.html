@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Document</title>
+		<script src="formulaire.js" defer></script>                            
+     </head>
+    <body>
+		<form>
+            <label for="name">Nom</label> <!--l'étiquette devant la balise input qui porte le id=name-->
+            <input type="text" id="name" name="name" placeholder="Votre nom" required>     <!--type de contenu à sasir par l'utilisateur est "text" dont la chaîne, le name attribut spécifie le nom d'un <input>élément.L' nameattribut est utilisé pour référencer des éléments dans un JavaScript ou pour référencer des données de formulaire après la soumission d'un formulaire. Remarque : seuls les éléments de formulaire avec un nameattribut verront leurs valeurs transmises lors de l'envoi d'un formulaire. on peut avoir plusieurs inputs qui portent le même name dont le même catégorie, placeholder => avant de sasir un mot dans la fênetre, le mot dans la placeholder sera en gris, on clique sur la fênetre, on pourrait retaper le mot que l'on veut saisir-->
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email"  placeholder="Votre email" required> <!-- required est un champs obligatoire-->
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="votre message" required></textarea> <!--permet de taper en paragraphe-->
+            <button>Envoyer</button>
+            <select id="films" name="films">  <!--ajoute d'une liste deroulante aux choix-->
+                <option value="batman">batman</option>
+                <option value="titanic">Titanic</option>
+                <option value="eee">eee</option>
+            </select>
+            <input type="checkbox" id="accepter" name="accepter">
+            <label>Préférence: </label>
+            <input type="radio" name="color" id="red" value="red">   <!--on peut avoir name="color" pour plusieurs inputs, checked a été mis ici, par défaut, on va cocher la case red-->
+            <label for="red">Rouge</label>
+            <input type="radio" name="color" id="blue" value="blue" >
+            <label for="red">Blue</label>
+            <input type="radio" name="color" id="blanc" value="blanc">
+            <label for="blanc">Blanc</label>
+            
+        </form>
+		
+
+    </body>
+		
+</html>
+    
+
+

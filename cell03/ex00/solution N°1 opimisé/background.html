@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<link href="background.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+	</head>
+	<body class="color0">
+		<button onclick="changecolor();">Cliquez-moi!</button>
+
+    </body>
+	<script>        //Le début de javascript si on l'intègre dans le fichier HTML
+		let colorbook=["color1","color2","color3","color4"]  //création du tableau colorbook, chaque élément du tableau correspond à une mise en forme qui porte le même nom via fichier css
+		let NbClick=0
+		function changecolor() {  //création de la fonction changecolor pour changer la couleur de fond d'écran 
+			let background=document.querySelector("body")   //récupérer l'élément dans le DOM, ici on récupère la balise body
+			background.setAttribute("class",colorbook[NbClick%colorbook.length])       //on veut remplacer la couleur de fond d'écran en 
+			//color 1/color 2/color3/color4, pour cela, on reprend le tabeau colorbook, on va prendre l'élément dedans un par un
+			// colorbook[0], colorbook[1], colorbook[2], colorbook[3], colorbook[4], NbClick = 0,1,2,3,4,5 en fonction du nombre de fois que l'on va cliquer
+			// colorbook.length=4 dans notre cas, donc colorbook[0%4] => color[0], color[1%4] => color[1], color[2%4] => color[2] 
+			// de cette manière, on change seulement le nombre d'élément dans le tableau colorbook du javascript et le class que l'on veut changer dans le fichier css.
+			console.log(background)                         
+				NbClick++
+				
+		}
+
+	
+		
+
+
+
+					
+		
+		
+		
+		
+
+	</script>
+</html>

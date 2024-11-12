@@ -1,0 +1,4 @@
+#zoneProposition span {          /*"#" est à mettre devant la zoneProposition, car on a nommé avec id dans le fichier html, le mot balise par span sere mis en gras*/
+    font-weight: bold;
+
+}

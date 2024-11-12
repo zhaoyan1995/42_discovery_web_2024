@@ -1,0 +1,154 @@
+body,html {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+
+
+
+
+body{
+	background: url(https://images.pexels.com/photos/297836/pexels-photo-297836.jpeg?auto=compress&cs=tinysrgb&w=800); /*inserer l'image comme le fond d'ecran)*/
+    background-repeat: no-repeat; /*ne pas repeter l'image dans la page web*/
+	background-size: cover; /*faire couvrir l'image dans le fond d'ecran entier*/       
+	width: 100vw;  /*vh=viewport height cad la hauteur de l'ecran visible 100vh =100% de la hauteur de la fenetre, vw=viewport width, la largeur de l'ecran visible*/
+    height: 100vh;	
+}
+
+h1 {
+	margin-left: 50px;
+	font-family: Serif;
+	color: white;
+	
+}
+
+nav{
+	width: 100vw;
+	
+}
+
+nav ul li{                          /*mise en forme du contenu de liste*/
+	list-style-type: none;          /*effacer la puce pour le menu deroulant, on enleve les puces pour l'accueil a propos de l'entreprise et contactez-nous*/
+	float: left;                /*float indique qu'un element doit etre retire du flux normal et doit etre pace sur le cote droit ou ur le cote gauche de son conteneur ex: https://developer.mozilla.org/fr/docs/Web/CSS/float  */   
+	width: auto;
+	text-align: left;
+	padding-right: 0;
+	margin-right: 40px;    /*changer la distance entre accueil a propos de l'entreprise*/	
+	
+}
+
+
+
+.navbar {
+	position: relative;
+	
+}
+
+
+
+nav a {                           /* nav a { ...} cible tous les elements <a> qui se ourvent a l'interieur d'un element <nav>. Cela permet de d'appliquer des styles specifiquement aux liens de navigation.*/
+	display: blocks;         /*block -> morceau qui prendra toute la place de rang, il y aura pas de texte a droite et a gauche*/
+	text-decoration: none;  /*pas de souligment des liens*/
+       					/* si "color: blue;" on change la couleur du texte de lien en bleu de texte dans menu deroulant et menu sous deroulant */
+	padding: 10px 20px; /*padding permet de definir les differents ecarts de remplissage sur les quatre cotes d'un element, 10px ecarter de facon en haut et en bas, 20px ecarter a droite a gauche*/
+	color: white;
+	border-bottom: 2px solid transparent;
+}
+
+
+
+
+nav > ul li:hover .sous-menu li {   /*faire reapparaitre le souris menu quand tu n'as pas le souris survole dessus*/
+	display: block;  /*block obligatoire sinon on peut pas afficher le sous menu dans le rectangle*/
+	
+}
+
+.sous-menu li{  /*positionner les contenus du texte de facon verticale uniquement pour les elements de sous-menu*/
+	display: none;       /*faire disparaitre le sous menu*/
+	z-index: 1000;       /*superposer cet element en priorite*/
+	box-shadow: 0px 1px 2px gray; /*ajouter l'ombre derriere le block de sous menu*/
+	background: rgba(255,255,255,0.105); /*changer la couleur de l'arriere plan de sous titre*/
+	float: none;  /*les texte au dessus de sous menu ne seront pas bouges quand on survole le sous menu*/
+	width: 150px;  /*le texte  prendra toute la place de block*/
+	
+}
+
+.menu-deroulant > a::after{ /*petite icone pour indiquer a coter droite du texte de menu-deroulant */
+	content: "▼";
+	font-size: 10px;
+}
+
+
+
+.menu-deroulant a { /*mise en forme du texte dans la liste de menu-deroulant*/
+	font-size: 20px; /*dimensionner la taille de texte*/
+	font-weight: bold; /*mettre le texte en gras*/
+}
+
+
+
+
+.sous-menu li a {  /*mise en forme du texte dans la liste de sous titre*/
+	font-size: 14px;
+	display: block;
+	padding-left: 2px;
+}
+
+.sous-menu {
+	padding-left: 0px; /*aligner la boite de sous menu avec le block menu deroulant*/
+	margin-left: 20px;
+	position:absolute; /*pour que l'etiquette de menu deroulant ne bouge pas a droite et a gauche*/
+	top: 30px;
+	
+}
+
+
+.b{
+	padding-bottom: 25px;
+	padding-left:0px;
+	background-color: rgba(255, 255, 255, 0.105);
+	margin-left: 0px;
+	margin-top: 0px;
+	height: 5px;
+}
+
+
+
+
+
+	
+@media screen and (max-width: 800px) {
+	.b {
+		display:flex;
+		flex-direction: column;
+		height: 100vh;
+		width: 60%;
+	}
+		
+
+	nav ul li {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.sous-menu {
+		top:0px;
+		position:relative;   /*pour enlever la position absolute quand il est pas responsive, dans le cas responsive, l'etiquette a propos de l'entreprise va descendre quand on survole le bouton accueil au dessus.*/
+
+
+	}
+
+	
+
+	
+}
+
+
+
+
+
+
+
+
+

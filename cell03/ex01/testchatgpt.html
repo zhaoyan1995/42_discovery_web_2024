@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #balloon {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: red;
+        }
+        .color1 { background-color: red; }
+        .color2 { background-color: green; }
+        .color3 { background-color: blue; }
+    </style>
+</head>
+<body>
+    <div id="balloon" class="color1"></div>
+</body>
+<script>
+    const balloon = document.querySelector("#balloon");
+    const colors = ["color1", "color2", "color3"];
+    let size = 200;           // Taille initiale
+    let colorIndex = 0;       // Index de couleur initial
+    const maxSize = 420;      // Taille maximale
+    const minSize = 200;      // Taille minimale
+
+    function updateBalloonSize(newSize) {
+        balloon.style.height = `${newSize}px`;
+        balloon.style.width = `${newSize}px`;
+    }
+
+    function souffler() {
+        if (size < maxSize) {
+            // Augmenter la taille et changer de couleur
+            size += 10;
+            updateBalloonSize(size);
+            colorIndex = (colorIndex + 1) % colors.length;
+            balloon.setAttribute("class", colors[colorIndex]);
+        } else {
+            // Si la taille maximale est atteinte, réinitialiser la taille et la couleur
+            //size = minSize;
+            //colorIndex = 0;
+            //updateBalloonSize(size);
+            //balloon.setAttribute("class", colors[colorIndex]);
+        }
+    }
+
+    function degonfler() {
+        // Réduire la taille de 5px à chaque fois que la souris quitte le ballon
+        if (size > minSize) {
+            size -= 5;
+            updateBalloonSize(size);
+
+            // Changer la couleur en sens inverse
+            //colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+            //balloon.setAttribute("class", colors[colorIndex]);
+        }
+    }
+
+    // Ajouter les événements
+    balloon.addEventListener("click", souffler);
+    balloon.addEventListener("mouseleave", degonfler);
+</script>
+</html>

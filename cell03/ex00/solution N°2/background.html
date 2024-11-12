@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<link href="background.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+	</head>
+	<body class="color1">
+		<button onclick="toggleFunction();">Cliquez-moi!</button>
+
+    </body>
+	<script>        //Le début de javascript si on l'intègre dans le fichier HTML
+		function changecolor0() {  //création de la fonction changecolor pour changer la couleur de fond d'écran en "color2", dont "pink" défini dans le fichier background.css
+			let background=document.querySelector("body")   //récupérer l'élément dans le DOM, ici on récupère la balise body
+			background.setAttribute("class","color2")       //on veut remplacer la couleur de fond d'écran en color2
+			console.log(background)                         //affichage via console : <body class="color2">
+		}
+		function changecolor1(){ //création de la fonction changecolor1 pour changer la couleur de fond d'écran en "color3", dont "purple" défini dans le fichier background.css
+			let background=document.querySelector("body") //récupérer l'élément dans le DOM, ici on récupère la balise body
+			background.setAttribute("class","color3")     //on veut remplacer la couleur de fond d'écran en color3
+			console.log(background)                       //affichage via console : <body class="color3">
+		}
+
+		function changecolor2(){
+			let background=document.querySelector("body")
+			background.setAttribute("class","color1")
+			console.log(background)
+		}
+
+		let NbClick=0          //déclarer un nouveau variable ,  le nombre de fois l'utilisateur a cliqué le bouton =0
+
+		function toggleFunction() { //création de la fonction toggleFunction pour combiner les 3 fonctions précédentes
+			if (NbClick ===0) {
+				changecolor0()
+				NbClick++        //on ajoute 1 sur le variable pour exécuter le programme en dessous
+			}else if (NbClick ===1){    // NbClick=1 on peut exécuter le programme changecolor1
+				changecolor1()
+				NbClick++
+				}else if (NbClick ===2){  //idem
+					changecolor2()
+					NbClick=0             //on remet la valeur à 0 pour exécuter la fonction changecolor0()
+				}
+				
+			}
+			
+			console.log(NbClick)
+		
+		
+		
+		
+		
+		
+
+	</script>
+</html>

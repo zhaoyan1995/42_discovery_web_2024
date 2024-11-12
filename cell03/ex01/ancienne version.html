@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+		<style>
+			#balloon {
+				height: 200px;    /*dimmensionner la hauteur de la section avec id="ballon"*/
+				width: 200px;     /*dimmensionner la larguer de la section avec id="ballon*/
+				border-radius: 50%; /*ajouter l'arrondi pour cette section pour que ce soit transformé en rond au lieu d'un carré*/
+				cursor: pointer;  /*lorsque le souris a pointé sur le ballon, la flèche de souris sera transformée en petite main*/
+			}
+			.color1 {
+				background-color: red;
+			}
+			.color2 {
+        	background-color: green;
+			}       
+			.color3 {
+        	background-color: blue;
+			}       
+		</style>
+	</head>
+	<body>
+		<div id="balloon" class="color1">     <!--la couleur initiale du balloon est color1 dont red -->
+		</div>	
+    </body>
+	<script>	
+		const Balloon=document.querySelector("#balloon") //récupérer un élément DOM avec id balloon
+		let size=200         //déclarer un nouveau variable size pour que ce soit également à la hauteur et la largeur 
+		
+		Balloon.addEventListener("click",souffler)   //pour l'objet balloon, on ajoute un évènement dessus, lorsque l'on clique, il va enclencher la function "souffler"
+		function souffler(){               //création de la function souffler()
+			if (size <420){                //quand la taille est égale ou inférieure à 420 on va ajouter 10 px sur le balloon.
+				size +=10                      //lorsque l'on exécute la function souffler(), la size va ajouter "10"
+				balloon.style.height=size+"px"  //la hauteur (height défini dans Css pour id balloon) de l'élément "balloon" nommé dans html va changer sa valeur en size+"px"
+				balloon.style.width=size+"px" //idem pour la largeur 
+				
+			}
+
+			
+			if (size >= 415){        //pk 415? car je veux que quand la taille de balloon est devenue 415, puis si on clique une fois de plus, il va devenir 425, en revanche, le balloon va s'exploser quand il va atteindre 420, donc je veux que le ballon reprend sa taille initiale 200 avant de cliquer sur le balloon de 415px
+				size=190             //PRBOLEME!!!!! On ne peut pas mettre "size=190" ici, ceci empêcher l'exécution de la fonction degoufler() et changecolor2()
+			}                        //En l'occurence, le ballon ne dégonfle pas correctement lorsque sa taille atteint 420px. Cela est dû à la façon dont la taille (size) est gérée dans la fonction souffler(). En effet, lorsque la taille atteint ou dépasse 415px, vous réinitialisez directement size à 190px. Cela empêche la fonction degonfler() de savoir que la taille du ballon a atteint 420px et de le dégonfler correctement.
+//在你的代码中，当气球尺寸达到420px时，鼠标移开不会触发 degonfler() 减小尺寸。这是因为在 souffler() 函数中，当尺寸达到或超过415px时，size 被强制设置为190，并且没有正确处理鼠标移开后的缩小逻辑。
+//问题分析
+//强制重置尺寸：在 souffler() 中，当 size >= 415 时，size 被设置为190。虽然这是为了防止 size 增加超过420px，但是这样设置后，degonfler() 无法知道当前的 size 是从420px开始，因为它已经被重置为190px。
+//不必要的重置：在 souffler() 中直接强制重置 size 和 colorIndex，而不留给 degonfler() 正确减小的机会，造成逻辑冲突。
+			
+			
+		}
+		const colorbook1=["color2","color3","color1"]  //on crée un tableau pour regrouper l'ensemble de couleur que l'on veut mettre pour le balloon
+		let NbClick=0 //on crée un compteur pour le nombre de click, la valeur initale est 	0
+		
+		
+		Balloon.addEventListener("click",changecolor1) //pour l'objet balloon, on ajoute un deuxième évènement dessus, lorsque on click le balloon, il va enclencher la function "changecolor1"
+		function changecolor1() {    //création de la function changecolor1()
+			Balloon.setAttribute("class",colorbook1[NbClick%colorbook1.length]) //on remplace la class de div id=balloon par l'élément dans le tableau colorbook1, ce qui est dans le [], voir l'exemple dans la solution N°1 optimisé dans le classeur "C:\Users\zhaoy\OneDrive\桌面\discovery_piscine\cell03\ex00"
+			NbClick++ //à chaque fois l'on execute la function changecolor1(), on ajoute 1 pour le variable NbClick
+			console.log(NbClick) //pour vérifier si le variable NbClick a bien été mis à jour après NbClick++
+			
+		}                                                  															
+
+		const BALLOON=document.getElementById("balloon")
+		BALLOON.addEventListener("mouseleave",degonfler) //pour l'objet balloon, on ajoute un troisième évènement dessous, lorsque l'on enlève le souris depuis le balloon, il va exécuter la function "degoufler" ci-dessous 
+		function degonfler(){   //création de la function degoufler()
+			if (size >=205){    //si la taille de balloon = ou > 205, il exécutera les actions ci-dessous, pk on met 205 au lieu de 200, si on a mis size >=200, il va dégoufler le ballon jusqu'au 195px
+			size-=5             //le variable size va reduire 5px
+			balloon.style.height=size+"px" //idem que la ligne N°35
+			balloon.style.width=size+"px"  //idem que la ligne N°36
+			}
+		}
+
+		BALLOON.addEventListener("mouseleave",changecolor2) //pour l'objet balloon, on ajoute un quatrième évènement dessous, lorsaue l'on enlève le souris depuis le balloon, il va exécuter la function "changecolor2" ci-dessous
+		let NbMoveout= 100     //on a créé un nouveau variable NbMoveout=10000, ceci est une valeur aléatoire, tant qu'il est supérieur à la valeur maximum de NbClick c'est bon! sinon il va devenir une valeur négatif, [NbMoveout%colorbook1.length] va sortir des résultats non souhaitable par rapport au NbMoveout>=0 
+		function changecolor2 (){  //création de la fonction changecolor2, le programme prendra le changement de couleur dans le sens inverse ["color1","color3","color2"]
+			if (size>200)  {   //si size >200
+			BALLOON.setAttribute("class",colorbook1[NbMoveout%colorbook1.length]) //on remplace la class par la colorbook1 mais dans le sens inverse 
+			NbMoveout--       //à chaque fois l'on enlève 1 pour le NbMoveut--
+			console.log(NbMoveout) 
+			}else{
+			BALLOON.setAttribute("class",colorbook1[NbMoveout%colorbook1.length])  //quand la size=200 (il ne peut pas être <200 selon la function degonfler()),il reprendra la couleur dans la colorbook1 pour une dernière fois, puis il va rester sur cette couleur, car le variable NbMoveOut restera constant lorsque la size=200
+			console.log(NbMoveout)
+			}
+		}
+		
+		
+		
+		
+	
+
+
+	</script>
+</html>

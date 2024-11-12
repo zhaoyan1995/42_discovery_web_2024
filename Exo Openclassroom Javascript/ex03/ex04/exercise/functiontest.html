@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Document</title>
+		
+		<script src="config.js" defer></script>                                      <!-- lire d'abord le contenu du tableau listeMot et listePhrase indiqués dans le fichier config.js-->
+		<script src="functiontest.js" defer></script>                                 <!-- functiontest.js contient le corps du programm JS -->
+		<script src="main.js" defer></script>                                         <!-- main.js fait appeler la fonction lancerJeu() -->
+																			    <!-- l'ordre du fichier javascript est important, sinon il va pas exécuter le programme normalement -->
+    </head>
+	<body>
+		<div id="choix">
+			<input type="text" id="contenu">
+			<bouton id="validation">valider</bouton>
+		</div>
+		<div class="zoneProposition">
+			Azerty
+		</div>
+		<div class="score">
+			votre score : <span>0</span>
+		</div>
+		<div id="radio">
+			<input type="radio" id="mots">
+			<label id="MOTS" for="mots">Mots</label>
+			<input type="radio" id="phrases">
+			<label id="PHRASE" for="phrases">Phrases</label>
+		</div>
+
+	<body>
+		
+</html>
+    
+
+

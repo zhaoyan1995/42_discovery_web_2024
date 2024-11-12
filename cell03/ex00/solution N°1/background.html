@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<link href="background.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+	</head>
+	<body class="color1">
+		<button onclick="toggleFunction();">Cliquez-moi!</button>
+
+    </body>
+	<script>        //Le début de javascript si on l'intègre dans le fichier HTML
+		function changecolor0() {  //création de la fonction changecolor pour changer la couleur de fond d'écran en "color2", dont "pink" défini dans le fichier background.css
+			let background=document.querySelector("body")   //récupérer l'élément dans le DOM, ici on récupère la balise body
+			background.setAttribute("class","color2")       //on veut remplacer la couleur de fond d'écran en color2
+			console.log(background)                         //affichage via console : <body class="color2">
+		}
+		function changecolor1(){ //création de la fonction changecolor1 pour changer la couleur de fond d'écran en "color3", dont "purple" défini dans le fichier background.css
+			let background=document.querySelector("body") //récupérer l'élément dans le DOM, ici on récupère la balise body
+			background.setAttribute("class","color3")     //on veut remplacer la couleur de fond d'écran en color3
+			console.log(background)                       //affichage via console : <body class="color3">
+		}
+
+		function changecolor2(){
+			let background=document.querySelector("body")
+			background.setAttribute("class","color1")
+			console.log(background)
+		}
+
+		let NbClick=0 // let NbClick=0 doit etre mis en dehours de la fonction toggleFunction, car c'est un variable global, si on le met à l'intérieur de la fonction toggleFunction, clickCount restera toujours à O quand on clique le bouton, il exécutera uniquement la première fonction, dont la changecolor en "pink"
+
+		function toggleFunction() { //création de la fonction toggleFunction pour combiner les deux fonctions précédentes
+			const functions =[changecolor0,changecolor1,changecolor2];   //création du tableau pour combiner les deux fonctions précédentes
+			console.log("function changecolor"+NbClick %3+"() vient d'être exécutée.");
+			functions[NbClick %3]();                    //à chaque clic, NbClick %3 détermine quelle fonction exécuter: 0 correspond à la première fonction, 1 à la deuxième fonction, 2 à la troisième fonction
+														//Quand NbClick=0, 0%3=0, on exécute la functions[0], dont function changecolor0() 
+														// quand NbClick=1, 1%3=1, on exécute la functions[1], dont function changecolor1()
+														// quand NbClick=2, 2%3=2, on exécute la functions[2], dont function changecolor2()
+														// quand NbClick=3, 3%3=0, on exécute la functions[0], dont function changecolor0()
+														// quand NbClick=4, 4%3=1, on exécute la functions[1], dont function changecolor1()
+														// quand NbClick=5, 5%3=2, on exécute la functions[2], dont function changecolor2()
+														// quand NbClick=6, 6%3=0, on exécute la functions[0], dont function changecolor0()
+														// quand NbClick=7, 7%3=1, on exécute la functions[1], dont function changecolor1()
+														// etc ...
+			NbClick++									//NbClick++ augmente le compteur de clics de 1, ce qui permet au prochain clic d'exécuter l'autre fonction.	
+			console.log("vous avez déjà cliqué "+NbClick+" de fois.");
+		}
+		
+		
+		
+		
+		
+
+	</script>
+</html>

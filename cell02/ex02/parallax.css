@@ -1,0 +1,55 @@
+body,html {
+	margin: 0;
+	padding: 0;
+}
+
+.image {
+    background-repeat: no-repeat; /*ne pas repeter l'image dans la page web*/
+	background-size: cover; /*faire couvrir l'image dans le fond d'ecran entier*/
+    height: 1200px;
+	background-attachment: fixed; /*l'effet parallax*/
+	background-position: center;
+	display:flex;               /*positionner le texte au milieu de bloc*/
+	justify-content: center;      /*positionner le texte au milieu de bloc*/
+	align-items: center;         /*positionner le texte au milieu de bloc*/
+}
+
+.block-noir {
+	background-color: black; /*couleur du plan en arriere*/
+	color: white; /*couleur du texte*/
+	text-align: center; /*text centre au milieu du block noir*/
+	padding: 250px 20px; /*espace interne*/
+}
+
+
+.titre1 {
+	font-size: 100px;
+	font-weight: bold;
+	color: white;
+}
+
+.titre2 {
+	font-size: 100px;
+	font-weight: bold;
+	color: white;
+}
+
+
+.image1 {
+	background-image: url("https://images.pexels.com/photos/16549340/pexels-photo-16549340/free-photo-of-templo-san-antonio-de-padoue.jpeg?auto=compress&cs=tinysrgb&w=600");
+}
+
+.image2 {
+	background-image: url("https://images.pexels.com/photos/297836/pexels-photo-297836.jpeg?auto=compress&cs=tinysrgb&w=800");
+}
+
+
+
+
+
+
+
+
+
+
+

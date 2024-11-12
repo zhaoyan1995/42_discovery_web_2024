@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Document</title>
+		<link href="functiontest.css" rel="stylesheet">
+		<script src="config.js" defer></script>                                      <!-- lire d'abord le contenu du tableau listeMot et listePhrase indiqués dans le fichier config.js-->
+		<script src="SHARE.js" defer></script>										<!-- SHARE.js contient la fenêtre ROSE pour partager le résultat si on clique sur le bouton "Envoyer", attention: on lit d'abord SHARE.js devant main.js. sinon la function SHARE() ne sera pas exécutée dans le fichier fucntiontest.js!!! -->
+		<script src="functiontest.js" defer></script>                                 <!-- functiontest.js contient le corps du programm JS -->		
+		<script src="main.js" defer></script>                                         <!-- main.js fait appeler la fonction lancerJeu() -->
+																			    <!-- l'ordre du fichier javascript est important, sinon il va pas exécuter le programme normalement -->
+    </head>
+	<body>
+		<!--création d'un arrière plan, lorsque l'on clique sur le bouton "partager", il va couvrir toutes les restes sauf la form id="send"-->
+		<div id="blocgris"></div>
+		<!--création d'un form avec deux boutons radios pour choisir mot ou phrase-->
+		<form>
+		<input type="radio" id="mot" name="element" value="mot" checked >   <!--on coche la case "mot" par défaut quand on ouvre la page web à chaque fois-->
+		<label for="mot">Mots</label>	
+		<input type="radio" id="phrase" name="element" value="phrase">
+		<label for="mot">Phrases</label>	
+		</form>
+
+		<!--Zone pour taper le mot par utilisateur et afficher le mot à taper, le résultat-->
+		<input id="motUtilisateur"> 
+		<button id="Envoyer">Envoyer</button>
+		<div id="motPropose"></div>
+		<button id="rafraichir">Rafraichir</button>
+		<div id="RESULTAT"></div>
+
+		<!--Création d'un bouton Partager pour popup la form id="send"-->	
+		<button id="partager">Partager</button>
+		<!--Création d'un form id="send", "novalidate ci-dessous pour désactiver la validation via navigateur, on recrée une autre critère de validation via JS"-->
+		<form id="send" class="off" novalidate>  <!--class="off" avec display:"none"; permet de faire disparaitre la form tant que l'on n'a pas cliqué sur le bouton "partager" à regarder le fichier JS pour mieux comprendre-->
+			<div id="bull" class="blocDePartage"> <!--création d'un bull pour envelopper tous les contenus ci-dessous-->
+				<h3 class="bordure">Partager votre score</h3>  <!--création de titre-->
+				<p class="bordure"><label for="name">Votre nom</label></p>  <!--création d'un paragraphe qui prendra toute la ligne, il est également une étiquette "label" pour l'input id="name"-->
+				<input type="text" id="name" name="name" placeholder="Votre nom" class="bordure">
+				<p class="bordure"><label for="email" class="bordure">Avec qui voulez-vous partager votre score?</label></p> <!--création d'un paragraphe qui prendra toute la ligne, il est également une étiquette "label" pour l'input id="email"-->
+				<input type="email" id="email" name="email" placeholder="nom@domaine.com" class="bordure">
+				<button class="bordure">Envoyer</button>
+			</div>
+			
+		</form>
+	</body>
+		
+</html>
+    
+
+

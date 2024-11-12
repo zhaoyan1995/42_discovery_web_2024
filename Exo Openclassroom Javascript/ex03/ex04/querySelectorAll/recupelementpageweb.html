@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Document</title>
+		<link href="recupelementpageweb.css" rel="stylesheet">
+		<script src="recupelementpageweb.js" defer></script><!--creer la liaison entre html et js, defer est important!!! car sans defer, la partie corps du html ne sera pas chargé avant l'exécution du fichier js-->
+    </head>
+	<body>
+        <div id="zoneChoix"><!--donner un attribut pour cette section avec id (id signifie que c'est un élément unique dans toute la page html), le nom de id est zoneChoix, le prerequis entre html et js -->
+			<input type="radio" name="optionSource" id="mots" value="1">
+			<label for="mots">Mots</label>
+			<input type="radio" name="optionSource" id="phrases" value="2" checked>
+			<label for="phrases">Phrases</label>
+		</div>
+		<div id="zoneProposition">
+			Entrer le mot: <span>Cachalot</span>
+		</div>
+		
+
+    </body>
+		
+</html>
+    
+
+

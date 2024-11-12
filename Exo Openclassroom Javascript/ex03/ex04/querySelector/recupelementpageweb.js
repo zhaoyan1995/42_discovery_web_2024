@@ -1,0 +1,2 @@
+let baliseZonePropositionSpan = document.querySelector("#zoneProposition span");  //Chercher un élément dont la section est attribuée avec id "zoneProposition", cet élément est balisé par span
+console.log(baliseZonePropositionSpan);    //il va afficher <span>Cachalot</span> dans la console, la fichier js récupère l'élément situé à la section nommée "zoneProposition" et inclus dans la balise <span>Cachalot</span>

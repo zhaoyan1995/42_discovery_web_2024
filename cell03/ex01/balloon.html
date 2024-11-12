@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+		<style>
+			#balloon {
+				height: 200px;    /*dimmensionner la hauteur de la section avec id="ballon"*/
+				width: 200px;     /*dimmensionner la larguer de la section avec id="ballon*/
+				border-radius: 50%; /*ajouter l'arrondi pour cette section pour que ce soit transformé en rond au lieu d'un carré*/
+				cursor: pointer;  /*lorsque le souris a pointé sur le ballon, la flèche de souris sera transformée en petite main*/
+			}
+			.color1 {
+				background-color: red;
+			}
+			.color2 {
+        	background-color: green;
+			}       
+			.color3 {
+        	background-color: blue;
+			}       
+		</style>
+	</head>
+	<body>
+		<div id="balloon" class="color1">     <!--la couleur initiale du balloon est color1 dont red -->
+		</div>	
+    </body>
+	<script>	
+		const Balloon=document.querySelector("#balloon") //récupérer un élément DOM avec id balloon
+		let size=200         //déclarer un nouveau variable size pour que ce soit également à la hauteur et la largeur 
+		
+		function updateBalloonSize(newSize) {   //La fonction updateBalloonSize(newSize) dans ce code est une fonction utilitaire qui permet de mettre à jour la taille du ballon de manière centralisée. 
+												//raison N°1:Réduction de la Redondance
+												//Plutôt que de répéter les lignes de code pour modifier la hauteur et la largeur du ballon à chaque fois (comme dans balloon.style.height = size + "px" et balloon.style.width = size + "px"), cette fonction encapsule cette logique en un seul endroit.
+												//On appelle simplement updateBalloonSize(size) chaque fois qu’on souhaite ajuster la taille, sans répéter les lignes de code qui manipulent directement le style du ballon.
+												//Si on met directement balloon.style.height=size+"px" dans la foncton souffler() et degoufler(), on risque de réinitialiser la valeur size et on empêche la fonction degoufler() et la fonction changecolor2() exécuteront correctement, voir l'exemple "ancienne version.html"
+
+		balloon.style.height = `${newSize}px`;  //balloon.style.width, on accède donc directement à la larguer de l'élément balloon pour purvoir la modifier
+        balloon.style.width = `${newSize}px`;   //"new size" est un paramètre passé à la fonction updateBalloonSize(newSize), il représente la nouvelle valeur que l'on souhaite donner à la largeur /hauteur de l'élément
+    	}                                       //`${newSize}px` permet d'insérer des variables ou des expressions directement dans une chaîne de caractères, il insère la valeur de newSize dans la chaîne de caractères, le suffixe px est ajouté pour indiauer que la valeur de width doit être interprétée en pixels (comme en CSS)
+		
+		Balloon.addEventListener("click",souffler)   //pour l'objet balloon, on ajoute un évènement dessus, lorsque l'on clique, il va enclencher la function "souffler"
+		function souffler(){               //création de la function souffler()
+			if (size <415){                //quand la taille est inférieure à 415 on va ajouter 10 px sur le balloon.
+											//pk size<415? car si la taille de balloon est 415, puis on clicque une fois de plus, je veux que ça devient 200px, si size <420, la taille de balloon va augmenter jusqu'à 425 avant de redevenir 200px
+				size +=10                      //lorsque l'on exécute la function souffler(), la size va ajouter "10" 
+				updateBalloonSize(size)     //为了使代码更清晰且达到预期效果，可以在 souffler() 函数中明确重置尺寸并简化逻辑
+			}else{
+				size=200 
+				updateBalloonSize(size)     //为了使代码更清晰且达到预期效果，可以在 souffler() 函数中明确重置尺寸并简化逻辑
+			}
+		}
+
+		const colorbook1=["color1","color2","color3"]  //on crée un tableau pour regrouper l'ensemble de couleur que l'on veut mettre pour le balloon
+		let colorIndex=0 //on crée un nouveau variable colorIndex pour faciliter le changement de couleur
+		Balloon.addEventListener("click",changecolor1) //pour l'objet balloon, on ajoute un deuxième évènement dessus, lorsque on click le balloon, il va enclencher la function "changecolor1"
+		function changecolor1() {    //création de la function changecolor1()
+			if (size===200){         //lorsque le balloon =200, la couleur est devenue rouge, colorIndex=0, colorbook[colorIndex]=colorbook[0]=colorbook[color1] (color1=red)
+				colorIndex=0         
+				Balloon.setAttribute("class",colorbook1[colorIndex])
+			}else{                   //si size>200, la couleur prendra dans l'ordre "color1->color2->color3->color1->color2->color3 ......"
+				colorIndex=(colorIndex+1)%colorbook1.length //A chaque fois on clique, on mettra à jour la valeur de colorIndex, en utilisant la solution modulos ex: colorIndex=(0+1)%3=1 colorIndex=(1+1)%3=2 etc..
+				Balloon.setAttribute("class",colorbook1[colorIndex]) //A chaque fois on clique, on remplace la class de div id=balloon par l'élément dans le tableau colorbook1, colorbook1[0] ->colorbook1[1] -> colorbook1[2] -> colorbook1[0] etc
+			}
+		}                                                  															
+
+		
+		Balloon.addEventListener("mouseleave",degonfler) //pour l'objet balloon, on ajoute un troisième évènement dessous, lorsque l'on enlève le souris depuis le balloon, il va exécuter la function "degoufler" ci-dessous 
+		function degonfler(){   //création de la function degoufler()
+			if (size >200){    
+				size-=5             //le variable size va reduire 5px
+				updateBalloonSize(size)  //在 degonfler() 中添加逻辑updateBalloonSize(size)，确保每次鼠标移开后按5px递减，直到尺寸回到初始值。
+			}
+		}
+		
+
+		Balloon.addEventListener("mouseleave",changecolor2) //pour l'objet balloon, on ajoute un quatrième évènement dessous, lorsaue l'on enlève le souris depuis le balloon, il va exécuter la function "changecolor2" ci-dessous 
+		function changecolor2 (){  //création de la fonction changecolor2, le programme prendra le changement de couleur dans le sens inverse ["color1","color3","color2"]
+			if (size>200)  {   //si size >200
+				colorIndex=(colorIndex-1+colorbook1.length)%colorbook1.length //à chaque fois on enlève le sourci depuis le balloon, colorIndex changera sa valeur
+		                                                                      // pour eviter la valeur colorIndex <0, ceci provoquera des erreurs dans le choix de couleur qui n'existe pas dans le tableau colorbook1, donc on ajoute "+colorbook1.length" à chaque fois on enlève 1 depuis la colorIndex		
+				Balloon.setAttribute("class",colorbook1[colorIndex]) //on remplace la class par la colorbook1 mais dans le sens inverse 
+			}else{   //sinon càd size=200 dans notre cas
+				colorIndex=0 //colorIndex est redevenu 0, dont la color1 = red
+				Balloon.setAttribute("class",colorbook1[colorIndex])  //lorsque size=200, le balloon va reprendre la couleur rouge.
+			}
+			
+		}
+		
+		
+		
+		
+	
+
+
+	</script>
+</html>
